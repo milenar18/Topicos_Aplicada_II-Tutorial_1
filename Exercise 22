@@ -1,0 +1,48 @@
+class Letter:
+    def __init__(self, vertices, arestas, faces):
+        """
+        Inicializa uma letra com sua triangulação.
+
+        :para vertices: Número de vértices (V)
+        :para arestas: Número de arestas (E)
+        :para faces: Número de faces (triângulos) (F)
+        """
+        self.vertices = vertices
+        self.arestas = arestas
+        self.faces = faces
+
+    def euler_characteristic(self):
+        """
+        Calcula a característica de Euler usando a fórmula:
+        
+        :( \chi = V - E + F \)
+        
+        :return: Característica de Euler (int)
+        """
+        return self.vertices - self.arestas + self.faces
+
+# Exemplo de triangulação para a letra A
+letter_a = Letter(vertices=6, arestas=9, faces=4)
+
+# Calculando a característica de Euler para A
+euler_a = letter_a.euler_characteristic()
+
+# Exemplo de triangulação para a letra B
+letter_b = Letter(vertices=8, arestas=14, faces=6)
+
+# Exemplo de triangulação para a letra O
+letter_o = Letter(vertices=8, arestas=12, faces=6)  
+
+# Calculando características de Euler para B e O
+euler_b = letter_b.euler_characteristic()
+euler_o = letter_o.euler_characteristic()
+
+print(f"Característica de Euler para a letra A: {euler_a}")
+print(f"Característica de Euler para a letra B: {euler_b}")
+print(f"Característica de Euler para a letra O: {euler_o}")
+
+# Comparação entre letras para verificar as relações
+print("\nVerificando relações entre homotopia e característica de Euler:")
+print(f"A e O são homotopicamente equivalentes? {'Sim' if euler_a == euler_o else 'Não'}")
+print(f"A e B são homotopicamente equivalentes? {'Sim' if euler_a == euler_b else 'Não'}")
+print(f"O e B são homotopicamente equivalentes? {'Sim' if euler_o == euler_b else 'Não'}")
