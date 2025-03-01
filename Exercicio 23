@@ -1,0 +1,74 @@
+# Exercise 23 - option 1
+!pip install gudhi networkx matplotlib
+import gudhi as gd
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def DrawSimplicialComplex(simplicial_complex):
+    """
+    Draws a simplicial complex using networkx and matplotlib.
+
+    Args:
+        simplicial_complex: A gudhi.SimplexTree object representing the simplicial complex.
+    """
+    # Create a networkx graph to represent the simplicial complex
+    graph = nx.Graph()
+    for simplex in simplicial_complex.get_skeleton(simplicial_complex.dimension()):
+        if len(simplex[0]) > 1:  # Only consider edges and higher-dimensional simplices
+            for i in range(len(simplex[0])):
+                for j in range(i + 1, len(simplex[0])):
+                    graph.add_edge(simplex[0][i], simplex[0][j])
+        elif len(simplex[0]) == 1:
+            graph.add_node(simplex[0][0]) #add nodes for 0-simplices
+
+    # Draw the graph
+    nx.draw(graph, with_labels=True, node_color='lightblue', edge_color='gray')
+    plt.title("Simplicial Complex")
+    plt.show()
+
+#For N equal 1
+n = 1
+sc = gd.SimplexTree()
+sc.insert([0])
+for i in range(n):
+    sc.insert([0, 2*i+1])
+    sc.insert([0, 2*i+2])
+    sc.insert([2*i+1, 2*i+2]) 
+DrawSimplicialComplex(sc) # Call the defined function
+print('N is equal to '+repr(n))
+print('--------------------------------------------------------------------------------------')
+
+#For N equal 2
+n = 2
+sc = gd.SimplexTree()
+sc.insert([0])
+for i in range(n):
+    sc.insert([0, 2*i+1])
+    sc.insert([0, 2*i+2])
+    sc.insert([2*i+1, 2*i+2])  
+DrawSimplicialComplex(sc) # Call the defined function
+print('N is equal to '+repr(n))
+print('--------------------------------------------------------------------------------------')
+
+#For N equal 3
+n = 3
+sc = gd.SimplexTree()
+sc.insert([0])
+for i in range(n):
+    sc.insert([0, 2*i+1])
+    sc.insert([0, 2*i+2])
+    sc.insert([2*i+1, 2*i+2])
+DrawSimplicialComplex(sc) # Call the defined function
+print('N is equal to '+repr(n))
+print('--------------------------------------------------------------------------------------')
+
+#For N equal 4
+n = 4
+sc = gd.SimplexTree()
+sc.insert([0])
+for i in range(n):
+    sc.insert([0, 2*i+1])
+    sc.insert([0, 2*i+2])
+    sc.insert([2*i+1, 2*i+2])  
+DrawSimplicialComplex(sc) # Call the defined function
+print('N is equal to '+repr(n))
